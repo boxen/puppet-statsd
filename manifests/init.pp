@@ -23,4 +23,9 @@ class statsd {
     provider  => 'git',
     source    => 'etsy/statsd'
   }
+
+  file { "${boxen::config::envdir}/statsd.sh":
+    content => template('statsd/env.sh.erb'),
+    require => File[$boxen::config::envdir]
+  }
 }
