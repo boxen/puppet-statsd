@@ -16,7 +16,8 @@ class statsd {
   }
 
   file { $statsd::config::configfile:
-    content => template('statsd/config.js.erb')
+    content => template('statsd/config.js.erb'),
+    notify  => Service['dev.statsd'],
   }
 
   repository { $statsd::config::libdir:
